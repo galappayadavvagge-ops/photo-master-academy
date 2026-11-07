@@ -26,6 +26,22 @@
 .lesson-panel .lesson-task{padding:14px;background:#ffffff08;border-left:3px solid var(--gold);border-radius:8px}
 @media(max-width:520px){.lesson-panel{padding:19px}.lesson-panel h2{font-size:24px}}
 
+
+.fund-progress{height:7px;background:#ffffff18;border-radius:20px;overflow:hidden;margin:15px 0 20px}
+.fund-progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .2s}
+.fund-step-count{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.12em}
+.fund-step-card{background:#ffffff08;border:1px solid var(--line);border-radius:14px;padding:20px;min-height:190px}
+.fund-step-card h3{font:700 23px 'Playfair Display',serif;margin:0 0 12px;color:var(--gold)}
+.fund-step-card p{margin:0;white-space:pre-line}
+.fund-nav{display:flex;justify-content:space-between;gap:12px;margin-top:18px}
+.fund-nav button{border:1px solid var(--line);border-radius:9px;padding:11px 16px;background:#2b2a31;color:var(--cream);font-weight:700}
+.fund-nav button.primary{background:var(--gold);color:#17130c;border-color:var(--gold)}
+.fund-nav button:disabled{opacity:.35;cursor:not-allowed}
+.fund-check{margin-top:18px;padding:15px;background:#ffffff08;border-radius:12px}
+.fund-check label{display:block;padding:9px 0;color:#ddd6ca;font-size:14px}
+.fund-check input{accent-color:var(--gold);margin-right:8px}
+.fund-feedback{margin-top:10px;color:var(--green);font-weight:700;font-size:13px}
+
 /* Interactive 3D camera lab */
 .camera3d-wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:stretch}
 .camera3d-stage{position:relative;min-height:420px;background:radial-gradient(ellipse at 50% 45%,#34343d,#101014 72%);border:1px solid var(--line);border-radius:18px;overflow:hidden}
@@ -111,7 +127,65 @@ const lessonData={
 'Wedding and Event Photography':{en:{title:'Wedding & Event Photography',intro:'Events move quickly. Prepare your camera before the important moments happen.',topics:['Use AF-C/continuous autofocus for moving people.','Choose a shutter speed fast enough for movement; raise ISO when needed.','Capture wide establishing frames, candid moments, details and close portraits.','Watch the histogram and protect important highlights, especially on bright clothing.'],task:'Create a 5-photo event story: venue wide shot, detail, candid, portrait and key moment.'},te:{title:'వెడ్డింగ్ మరియు ఈవెంట్ ఫోటోగ్రఫీ',intro:'ఈవెంట్స్ వేగంగా జరుగుతాయి. ముఖ్యమైన క్షణాలు మిస్ కాకుండా ముందుగానే కెమెరా సిద్ధం చేసుకోండి.',topics:['కదిలే వ్యక్తుల కోసం AF-C / Continuous Autofocus వాడండి.','కదలిక ఆగేంత shutter speed ఎంచుకోండి; అవసరమైతే ISO పెంచండి.','Wide venue shot, candid moments, details మరియు close portraits తీయండి.','Histogram చూడండి. తెల్లని దుస్తుల highlights overexpose కాకుండా జాగ్రత్త.'],task:'5 ఫోటోల event story తయారు చేయండి: venue wide shot, detail, candid, portrait మరియు ముఖ్యమైన moment.'}},
 'Editing and Colour':{en:{title:'Editing & Colour',intro:'Editing should improve the photograph while keeping skin, light and colours believable.',topics:['Start with exposure, white balance, highlights and shadows.','Use contrast and tone curves gently; avoid crushing shadows.','Adjust HSL selectively instead of pushing every colour.','For portraits, retouch lightly and keep natural skin texture. Export a full-size JPEG for delivery.'],task:'Edit one RAW photo in this order: white balance, exposure, highlights/shadows, crop, colour and export.'},te:{title:'ఎడిటింగ్ మరియు కలర్',intro:'ఫోటో సహజత్వం పోకుండా వెలుతురు, skin tone మరియు colours మెరుగుపరచడం ఎడిటింగ్ లక్ష్యం.',topics:['Exposure, White Balance, Highlights మరియు Shadows‌తో ప్రారంభించండి.','Contrast మరియు Tone Curve‌ను మితంగా మార్చండి; shadows పూర్తిగా నల్లగా చేయవద్దు.','అన్ని colours కాకుండా అవసరమైన HSL colours మాత్రమే సర్దండి.','Portraitలో తక్కువ retouch చేసి సహజ skin texture ఉంచండి. చివర్లో full-size JPEG export చేయండి.'],task:'ఒక RAW ఫోటోను ఈ క్రమంలో edit చేయండి: White Balance, Exposure, Highlights/Shadows, Crop, Colour, Export.'}}
 };
+const fundamentalsSteps={
+en:[
+['Welcome to Camera Fundamentals','In this course you will learn the camera from the outside in: body, lens, sensor, buttons, shooting modes, focus, image quality and safe handling.\n\nGo one step at a time. Read the explanation, find the matching control on your camera, then press Next.'],
+['1. DSLR vs Mirrorless','DSLR: uses a mirror and optical viewfinder to show the scene through the lens.\nMirrorless: has no reflex mirror; it usually shows the live sensor image on an electronic viewfinder or screen.\n\nBoth can create professional photographs. Learn the controls of the camera you own.'],
+['2. Camera Body','The body contains the image sensor, processor, display, buttons, card slot and battery.\n\nHold the grip firmly with your right hand and support the lens from underneath with your left. Keep fingers away from the lens and sensor opening.'],
+['3. Lens and Mount','The lens gathers light and focuses it onto the sensor. The focal length (for example 18mm, 35mm, 50mm or  telephoto) changes the angle of view.\n\nLine up the lens mounting marks, rotate until it locks, and never force it. Use the lens release button to remove it.'],
+['4. Image Sensor','The sensor records the light that forms your photograph. Common sensor formats include Full Frame, APS-C and Micro Four Thirds.\n\nKeep the sensor protected: switch the camera off before changing lenses and avoid touching the sensor surface.'],
+['5. Front Controls','Shutter button: half-press to focus/meter (depending on settings), full-press to take the photo.\nMode dial: selects Auto, P, A/Av, S/Tv and M modes.\nExposure compensation: makes the image brighter or darker in supported modes.\n\nButton names and positions vary by camera model.'],
+['6. Top and Rear Controls','Main command dial changes settings. MENU opens camera settings. Playback reviews photos. DISP/INFO changes screen information.\n\nThe viewfinder helps compose; the LCD screen can show live view, menus and playback. Find each control on your own camera.'],
+['7. Shooting Modes','Auto: camera chooses most settings.\nP: camera selects aperture and shutter combination; you can adjust other settings.\nA/Av: you choose aperture; camera selects shutter speed.\nS/Tv: you choose shutter speed; camera selects aperture.\nM: you choose both aperture and shutter speed.\n\nBegin with A/Av for portraits or S/Tv for moving subjects.'],
+['8. Focus Basics','AF-S / One Shot: focus once for still subjects.\nAF-C / AI Servo: keeps adjusting focus for moving subjects.\nManual Focus: turn the focus ring yourself.\n\nFor portraits, place a focus point on the nearest eye. Check focus by zooming in during playback.'],
+['9. Memory Card and Battery','Use a compatible, reliable memory card with enough capacity and speed for your photo/video format. Carry a charged spare battery.\n\nFormat a card in-camera only after backing up files. Never remove the card while the camera is writing.'],
+['10. RAW and JPEG','JPEG is processed in-camera and is smaller and ready to share. RAW keeps more original image data and gives greater flexibility when editing, but needs compatible software.\n\nFor learning editing, try RAW+JPEG if your card has enough space.'],
+['11. White Balance and Metering','White Balance adjusts colour for the light source: Auto, Daylight, Shade, Cloudy, Tungsten and custom options.\nMetering helps the camera estimate brightness: Evaluative/Matrix, Centre-weighted and Spot are common choices.\n\nStart with Auto White Balance and Matrix/Evaluative metering.'],
+['12. Safe Camera Care','Use a strap, lens cap and a clean dry microfiber cloth. Avoid changing lenses in dusty or wet conditions. Do not use household cleaners on lens glass.\n\nStore camera and lenses in a dry bag. Let cold gear warm gradually before opening it in a humid room to reduce condensation.'],
+['13. Practical Camera Walkthrough','With the camera powered off, identify: body, lens, lens release, shutter button, mode dial, command dial, viewfinder, LCD, menu, playback, battery door and memory-card slot.\n\nPower on, choose Auto or P, half-press to focus, then take one test photo. Review it and check sharpness.'],
+['Knowledge Check','Answer this quick question before finishing: Which mode lets you choose the aperture while the camera selects a shutter speed?']
+],
+te:[
+['కెమెరా ప్రాథమికాలకు స్వాగతం','ఈ కోర్సులో కెమెరాను బయట నుంచి లోపలివరకు నేర్చుకుంటారు: Body, Lens, Sensor, Buttons, Shooting Modes, Focus, Image Quality మరియు Camera Care.\n\nఒక్కో స్టెప్ చదవండి. మీ కెమెరాలో ఆ భాగాన్ని గుర్తించి తర్వాత Next నొక్కండి.'],
+['1. DSLR మరియు Mirrorless తేడా','DSLR: అద్దం (Mirror) మరియు Optical Viewfinder ద్వారా లెన్స్‌లో కనిపించే దృశ్యాన్ని చూపిస్తుంది.\nMirrorless: Reflex Mirror ఉండదు. Sensor నుంచి వచ్చే Live Image‌ను Electronic Viewfinder లేదా Screen‌లో చూపిస్తుంది.\n\nరెండింటితోనూ Professional ఫోటోలు తీయవచ్చు. మీ కెమెరా controls నేర్చుకోండి.'],
+['2. Camera Body','Bodyలో Image Sensor, Processor, Display, Buttons, Memory Card Slot మరియు Battery ఉంటాయి.\n\nకుడిచేతితో Grip పట్టుకోండి. ఎడమచేతితో Lens కింద నుంచి Support ఇవ్వండి. వేళ్లు Lens ముందు లేదా Sensor Opening‌కు అడ్డుగా పెట్టవద్దు.'],
+['3. Lens మరియు Mount','Lens వెలుతురును సేకరించి Sensor‌పై Focus చేస్తుంది. Focal Length (18mm, 35mm, 50mm లేదా Telephoto) మారితే కనిపించే Scene పరిధి మారుతుంది.\n\nLens Mount Marks కలిపి మెల్లగా తిప్పి Lock చేయండి. బలవంతంగా తిప్పవద్దు. Lens తీసేందుకు Lens Release Button నొక్కండి.'],
+['4. Image Sensor','Sensor వెలుతురును రికార్డ్ చేసి ఫోటోను తయారు చేస్తుంది. సాధారణ Sensor Formats: Full Frame, APS-C మరియు Micro Four Thirds.\n\nSensor‌ను తాకవద్దు. Lens మార్చే ముందు Camera Off చేయండి. Dust పడకుండా జాగ్రత్తపడండి.'],
+['5. ముందు భాగంలోని Controls','Shutter Button: Half-press చేస్తే Focus/Meter అవుతుంది (Settings ఆధారంగా); Full-press చేస్తే ఫోటో తీస్తుంది.\nMode Dial: Auto, P, A/Av, S/Tv మరియు M మోడ్‌లను ఎంచుకుంటుంది.\nExposure Compensation: ఫోటోను Bright లేదా Dark చేయడానికి ఉపయోగపడుతుంది.\n\nమీ Camera Model‌ను బట్టి బటన్ల స్థానాలు మారవచ్చు.'],
+['6. పైభాగం మరియు వెనుక Controls','Command Dial Settings మార్చడానికి ఉపయోగపడుతుంది. MENU ద్వారా Settings తెరవచ్చు. Playback ద్వారా ఫోటోలు చూడవచ్చు. DISP/INFO Screen వివరాలను మారుస్తుంది.\n\nViewfinder ద్వారా Frame Compose చేయవచ్చు. LCD Screen‌లో Live View, Menus మరియు Photos చూడవచ్చు.'],
+['7. Shooting Modes','Auto: కెమెరా ఎక్కువ Settings‌ను ఎంచుకుంటుంది.\nP: కెమెరా Aperture, Shutter Combination ఎంచుకుంటుంది; మీరు ఇతర Settings మార్చవచ్చు.\nA/Av: మీరు Aperture ఎంచుకుంటారు; కెమెరా Shutter Speed ఎంచుకుంటుంది.\nS/Tv: మీరు Shutter Speed ఎంచుకుంటారు; కెమెరా Aperture ఎంచుకుంటుంది.\nM: Aperture, Shutter Speed రెండూ మీరే ఎంచుకుంటారు.\n\nPortrait కోసం A/Av, కదిలే Subject కోసం S/Tvతో ప్రారంభించండి.'],
+['8. Focus Basics','AF-S / One Shot: కదలని Subject‌పై ఒకసారి Focus చేస్తుంది.\nAF-C / AI Servo: కదిలే Subject‌ను Follow చేస్తూ Focus మార్చుతుంది.\nManual Focus: Focus Ring‌ను మీరే తిప్పాలి.\n\nPortraitలో దగ్గర కంటిపై Focus Point పెట్టండి. Playbackలో Zoom చేసి Sharpness చెక్ చేయండి.'],
+['9. Memory Card మరియు Battery','మీ Photo/Video Format‌కు సరిపోయే నమ్మకమైన Memory Card వాడండి. సరిపడా Storage, Speed ఉండాలి. అదనపు Charged Battery వెంట ఉంచండి.\n\nFiles Backup చేసిన తర్వాతే Cameraలో Card Format చేయండి. Camera Data Write చేస్తున్నప్పుడు Card తీయవద్దు.'],
+['10. RAW మరియు JPEG','JPEG: Cameraలోనే Process అవుతుంది; File Size తక్కువ, వెంటనే Share చేయవచ్చు.\nRAW: అసలు Image Data ఎక్కువగా ఉంచుతుంది; Editingలో ఎక్కువ స్వేచ్ఛ ఉంటుంది. కానీ Software అవసరం.\n\nEditing నేర్చుకోవడానికి Card Space ఉంటే RAW+JPEG ప్రయత్నించండి.'],
+['11. White Balance మరియు Metering','White Balance వెలుతురు రంగుకు సరిపోయేలా Colour‌ను సరిచేస్తుంది: Auto, Daylight, Shade, Cloudy, Tungsten మరియు Custom.\nMetering ఫోటో Brightness‌ను అంచనా వేస్తుంది: Evaluative/Matrix, Centre-weighted, Spot.\n\nమొదట Auto White Balance మరియు Matrix/Evaluative Metering వాడండి.'],
+['12. Camera Care','Strap, Lens Cap మరియు శుభ్రమైన Microfiber Cloth వాడండి. Dust లేదా వర్షం ఉన్నప్పుడు Lens మార్చకండి. Lens Glass‌పై ఇంటి Cleaning Chemicals వాడవద్దు.\n\nCamera, Lens‌ను Dry Bagలో ఉంచండి. చల్లని Camera‌ను వేడి తేమ ఉన్న గదిలోకి తీసుకొచ్చిన వెంటనే Bag తెరవకండి; Condensation రావచ్చు.'],
+['13. Practical Camera Walkthrough','Camera Off చేసి ఈ భాగాలను గుర్తించండి: Body, Lens, Lens Release, Shutter Button, Mode Dial, Command Dial, Viewfinder, LCD, Menu, Playback, Battery Door మరియు Memory Card Slot.\n\nCamera On చేసి Auto లేదా P Mode ఎంచుకోండి. Half-pressతో Focus చేసి ఒక Test Photo తీయండి. Playbackలో Sharpness చూడండి.'],
+['మీ జ్ఞానాన్ని పరీక్షించుకోండి','ఈ చిన్న ప్రశ్నకు సమాధానం చెప్పండి: మీరు Aperture ఎంచుకుని, Camera Shutter Speed‌ను ఎంచుకునే Mode ఏది?']
+]};
+let fundamentalsIndex=0;
+function renderFundamentalsStep(){
+ const data=fundamentalsSteps[language]||fundamentalsSteps.en;const step=data[fundamentalsIndex];const total=data.length;
+ const content=document.getElementById('lessonContent');content.replaceChildren();
+ const count=document.createElement('div');count.className='fund-step-count';count.textContent=(language==='te'?'స్టెప్ ':'STEP ')+(fundamentalsIndex+1)+' / '+total;
+ const progress=document.createElement('div');progress.className='fund-progress';const fill=document.createElement('span');fill.style.width=((fundamentalsIndex+1)/total*100)+'%';progress.appendChild(fill);
+ const card=document.createElement('div');card.className='fund-step-card';const h=document.createElement('h3');h.textContent=step[0];const p=document.createElement('p');p.textContent=step[1];card.append(h,p);
+ content.append(count,progress,card);
+ if(fundamentalsIndex===total-1){
+  const quiz=document.createElement('div');quiz.className='fund-check';
+  const q=document.createElement('strong');q.textContent=language==='te'?'ఎంపిక చేయండి:':'Choose one answer:';
+  quiz.appendChild(q);
+  const options=language==='te'?['A/Av Mode','S/Tv Mode','Manual Mode']:['A/Av mode','S/Tv mode','Manual mode'];
+  options.forEach((label,i)=>{const l=document.createElement('label');const input=document.createElement('input');input.type='radio';input.name='fundQuiz';input.value=String(i);l.append(input,document.createTextNode(label));quiz.appendChild(l)});
+  const check=document.createElement('button');check.className='lesson-close';check.type='button';check.style.marginTop='8px';check.textContent=language==='te'?'సమాధానం చెక్ చేయి':'Check answer';
+  const feedback=document.createElement('div');feedback.className='fund-feedback';check.addEventListener('click',()=>{const chosen=quiz.querySelector('input:checked');feedback.textContent=!chosen?(language==='te'?'ఒక సమాధానం ఎంచుకోండి.':'Please select an answer.'):(chosen.value==='0'?(language==='te'?'సరైన సమాధానం! మీరు Camera Fundamentals పూర్తి చేశారు.':'Correct! You completed Camera Fundamentals.'):(language==='te'?'మళ్లీ ప్రయత్నించండి. సరైన సమాధానం A/Av Mode.':'Try again. The correct answer is A/Av mode.'))});quiz.append(check,feedback);content.appendChild(quiz);
+ }
+ const nav=document.createElement('div');nav.className='fund-nav';
+ const prev=document.createElement('button');prev.type='button';prev.textContent=language==='te'?'← వెనక్కి':'← Previous';prev.disabled=fundamentalsIndex===0;prev.addEventListener('click',()=>{fundamentalsIndex--;renderFundamentalsStep()});
+ const next=document.createElement('button');next.type='button';next.className='primary';next.textContent=fundamentalsIndex===total-1?(language==='te'?'ముగించు':'Finish'):(language==='te'?'తర్వాతి స్టెప్ →':'Next step →');next.addEventListener('click',()=>{if(fundamentalsIndex<total-1){fundamentalsIndex++;renderFundamentalsStep()}else closeLesson()});
+ nav.append(prev,next);content.appendChild(nav);
+}
 function lesson(name){
+ if(name==='Camera Fundamentals'){fundamentalsIndex=0;renderFundamentalsStep();document.getElementById('lessonModal').style.display='flex';document.body.style.overflow='hidden';return;}
  const item=lessonData[name];if(!item)return;
  const d=item[language]||item.en;
  const title=document.createElement('h2');title.id='lessonTitle';title.textContent=d.title;
