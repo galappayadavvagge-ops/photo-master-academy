@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#101014">
+<title>3D Camera Studio | Photo Master Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101014;--panel:#19191f;--gold:#e8b85b;--cream:#f7f1e7;--muted:#aaa5a0;--line:#ffffff20}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#29252a,#101014 58%);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh}
+.wrap{width:min(1200px,94%);margin:auto}.top{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.08em;text-decoration:none;color:var(--cream)}.brandmark{width:42px;height:42px;border:1px solid var(--gold);border-radius:13px;display:grid;place-items:center;color:var(--gold);font-size:22px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.2em;margin-top:3px}
+.back{color:var(--gold);text-decoration:none;border:1px solid #e8b85b66;padding:10px 14px;border-radius:10px;font-weight:700;font-size:13px}
+main{padding:38px 0 60px}.eyebrow{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:11px;font-weight:700}
+h1{font:700 clamp(34px,5vw,54px)/1.1 'Playfair Display',serif;margin:12px 0} .intro{color:#c1bbb2;line-height:1.7;max-width:720px;margin-bottom:26px}
+.studio{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.65fr);gap:18px}
+.stage{position:relative;min-height:570px;background:radial-gradient(ellipse at 50% 45%,#45434a,#101014 72%);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 25px 80px #0008}
+#camera3d{width:100%;height:570px;display:block;touch-action:none}
+.hint{position:absolute;left:18px;bottom:16px;color:#e2d9cc;font-size:12px;background:#101014c9;padding:10px 13px;border-radius:9px;pointer-events:none}
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px;align-self:stretch}
+.controls h2{font:700 27px 'Playfair Display',serif;margin:8px 0 12px}.controls p{color:var(--muted);font-size:13px;line-height:1.75}
+.controls label{display:block;margin:25px 0 9px;font-size:13px}.controls input{width:100%;accent-color:var(--gold)}output{float:right;color:var(--gold);font-weight:800}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.actions button{background:#292830;border:1px solid var(--line);color:var(--cream);padding:11px 13px;border-radius:9px;font-weight:700}.actions button:hover{border-color:var(--gold);color:var(--gold)}
+.note{margin-top:18px;padding:14px;border-left:2px solid var(--gold);background:#ffffff08;color:#d2c8b9;font-size:12px;line-height:1.7;border-radius:0 9px 9px 0}
+.tip{margin-top:18px;color:#aaa5a0;font-size:12px;line-height:1.7}.footer{padding:22px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media(max-width:820px){.studio{grid-template-columns:1fr}.stage,#camera3d{min-height:380px;height:380px}.controls{padding:20px}}
+@media(max-width:520px){.top{height:68px}.brandmark{width:36px;height:36px}.stage,#camera3d{min-height:320px;height:320px}.back{padding:9px 10px;font-size:12px}main{padding-top:28px}}
+</style>
+</head>
+<body>
+<header class="wrap top"><a class="brand" href="index.html"><span class="brandmark">◉</span><span>PHOTO MASTER<small>ACADEMY</small></span></a><a class="back" href="index.html">← Back to Academy</a></header>
+<main class="wrap">
+<div class="eyebrow">PHOTO MASTER ACADEMY · 3D STUDIO</div>
+<h1>Explore the DSLR in 3D</h1>
+<p class="intro">Drag the camera to rotate it, scroll or pinch to zoom, and adjust the aperture to understand how the lens opening changes. ఈ 3D కెమెరాను మౌస్‌తో లేదా మొబైల్‌లో టచ్‌తో తిప్పి చూడండి.</p>
+<div class="studio">
+<div class="stage"><canvas id="camera3d" aria-label="Interactive 3D DSLR camera model"></canvas><div class="hint">Drag / Touch · Rotate &nbsp; | &nbsp; Scroll / Pinch · Zoom</div></div>
+<aside class="controls">
+<div class="eyebrow">LENS SIMULATOR · లెన్స్ సిమ్యులేటర్</div><h2>Aperture Control</h2>
+<p>Aperture controls the size of the opening inside your lens. A smaller f-number means a wider opening and more light.</p>
+<label for="irisRange">Aperture (f-number) <output id="irisValue">f/2.8</output></label>
+<input id="irisRange" type="range" min="1.4" max="16" step="0.1" value="2.8">
+<div class="actions"><button id="cameraReset" type="button">Reset View ↺</button><button id="cameraSpin" type="button">Auto Rotate: Off</button></div>
+<div class="note" id="apertureTip">f/2.8 · Wide opening · More light · Shallow depth of field</div>
+<div class="tip">Tip: Move the slider slowly. Try f/2.8, f/5.6 and f/11 and compare the aperture opening.</div>
+</aside>
+</div>
+</main>
+<footer class="wrap footer">© PHOTO MASTER ACADEMY · Telugu + English Photography Learning</footer>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+const canvas=document.getElementById('camera3d');
+if(canvas){
+ const scene=new THREE.Scene(); scene.background=new THREE.Color(0x17171d);
+ const camera=new THREE.PerspectiveCamera(38,1,0.1,100); camera.position.set(5.2,3.2,7.5);
+ const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false}); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.shadowMap.enabled=true; renderer.outputColorSpace=THREE.SRGBColorSpace;
+ scene.add(new THREE.HemisphereLight(0xffffff,0x34313a,2));
+ const key=new THREE.DirectionalLight(0xffd99a,3.2); key.position.set(4,6,5); scene.add(key);
+ const rim=new THREE.DirectionalLight(0x8ca8d8,2); rim.position.set(-5,2,-4); scene.add(rim);
+ const cameraGroup=new THREE.Group(); scene.add(cameraGroup);
+ const black=new THREE.MeshStandardMaterial({color:0x202127,metalness:.72,roughness:.3});
+ const rubber=new THREE.MeshStandardMaterial({color:0x101115,metalness:.15,roughness:.85});
+ const metal=new THREE.MeshStandardMaterial({color:0x777b83,metalness:.9,roughness:.22});
+ const gold=new THREE.MeshStandardMaterial({color:0xc99b4e,metalness:.75,roughness:.25});
+ const glass=new THREE.MeshPhysicalMaterial({color:0x27485c,metalness:.65,roughness:.08,clearcoat:1,transparent:true,opacity:.9});
+ function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);cameraGroup.add(m);return m}
+ function cyl(rt,rb,len,mat,x,y,z,axis='z'){const m=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,len,64),mat);if(axis==='z')m.rotation.x=Math.PI/2;m.position.set(x,y,z);cameraGroup.add(m);return m}
+ // Camera body, grip and top prism
+ box(3.6,2.15,1.15,black,0,0,0);
+ box(.78,1.85,1.05,rubber,1.38,-.08,.05);
+ box(1.45,.36,1.0,black,-.1,1.18,0);
+ const prism=new THREE.Mesh(new THREE.CylinderGeometry(.62,.82,.75,4),black);prism.rotation.y=Math.PI/4;prism.position.set(-.15,1.42,-.02);cameraGroup.add(prism);
+ box(.85,.22,.65,rubber,-.15,1.84,-.02);
+ // Lens barrel facing front (+Z)
+ cyl(.83,.72,.42,metal,0,0,.78);
+ cyl(.78,.78,.58,black,0,0,1.22);
+ cyl(.73,.73,.13,metal,0,0,1.58);
+ cyl(.69,.69,.23,rubber,0,0,1.75);
+ cyl(.72,.72,.12,black,0,0,1.91);
+ // Front glass and inner rings
+ cyl(.59,.59,.055,glass,0,0,2.005);
+ const frontRing=new THREE.Mesh(new THREE.TorusGeometry(.68,.035,12,64),gold);frontRing.position.z=2.04;cameraGroup.add(frontRing);
+ const innerRing=new THREE.Mesh(new THREE.TorusGeometry(.43,.025,10,64),metal);innerRing.position.z=2.045;cameraGroup.add(innerRing);
+ // Aperture opening visible behind glass
+ const irisMat=new THREE.MeshBasicMaterial({color:0x080b10});
+ const iris=new THREE.Mesh(new THREE.CircleGeometry(.31,64),irisMat);iris.position.z=2.037;cameraGroup.add(iris);
+ const irisEdge=new THREE.Mesh(new THREE.TorusGeometry(.33,.018,8,64),gold);irisEdge.position.z=2.05;cameraGroup.add(irisEdge);
+ // Lens markings and top controls
+ for(let i=0;i<24;i++){const a=i*Math.PI/12;const tick=box(.025,.09,.018,metal,Math.cos(a)*.75,Math.sin(a)*.75,1.82);tick.rotation.z=a-Math.PI/2;}
+ cyl(.23,.23,.16,metal,1.0,1.31,.02,'y');cyl(.17,.17,.05,gold,1.0,1.42,.02,'y');
+ cyl(.16,.16,.12,metal,-1.2,1.25,-.05,'y');
+ box(.55,.32,.08,glass,-.9,.5,-.61);
+ // Front branding badge
+ box(.7,.27,.035,gold,-1.15,-.45,.59);
+ const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=4.5;controls.maxDistance=13;controls.target.set(0,.1,.3);controls.enablePan=false;
+ function resize(){const rect=canvas.getBoundingClientRect();const w=Math.max(320,Math.floor(rect.width));const h=Math.max(240,Math.floor(rect.height||360));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+ if(typeof ResizeObserver!=='undefined'){new ResizeObserver(resize).observe(canvas.parentElement||canvas)}window.addEventListener('resize',resize);resize();
+ const range=document.getElementById('irisRange'),value=document.getElementById('irisValue'),tip=document.getElementById('apertureTip');
+ function setAperture(){const f=Number(range.value);value.textContent='f/'+f.toFixed(1);const radius=.11+((f-1.4)/(16-1.4))*.45;iris.scale.setScalar(radius/.31);irisEdge.scale.setScalar(radius/.33);tip.textContent=f<=2.8?'f/'+f.toFixed(1)+' · Wide opening · More light · Shallow depth of field':f>=11?'f/'+f.toFixed(1)+' · Narrow opening · Less light · Deeper depth of field':'f/'+f.toFixed(1)+' · Medium opening · Balanced light';}
+ range.addEventListener('input',setAperture);setAperture();
+ document.getElementById('cameraReset').addEventListener('click',()=>{camera.position.set(5.2,3.2,7.5);controls.target.set(0,.1,.3);controls.update()});
+ const spin=document.getElementById('cameraSpin');spin.addEventListener('click',()=>{controls.autoRotate=!controls.autoRotate;spin.textContent=controls.autoRotate?(document.documentElement.lang==='te'?'ఆటో రొటేట్: ఆన్':'Auto rotate: On'):(document.documentElement.lang==='te'?'ఆటో రొటేట్: ఆఫ్':'Auto rotate: Off')});
+ function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
+}
+</script>
+</body></html>
