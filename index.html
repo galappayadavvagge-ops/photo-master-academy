@@ -103,18 +103,9 @@
 <section class="section" id="about"><div class="wrap cta"><div><div class="eyebrow">PHOTO MASTER ACADEMY</div><h2 data-en="Every great photo starts with learning." data-te="ప్రతి గొప్ప ఫోటో వెనుక నేర్చుకోవడం ఉంటుంది.">Every great photo starts with learning.</h2><p data-en="Your photography journey starts here. Learn at your own pace." data-te="మీ ఫోటోగ్రఫీ ప్రయాణం ఇక్కడ ప్రారంభమవుతుంది. మీ వేగంతో నేర్చుకోండి.">Your photography journey starts here. Learn at your own pace.</p></div><a class="btn" href="#courses" data-en="Begin learning →" data-te="నేర్చుకోవడం ప్రారంభించండి →">Begin learning →</a></div></section>
 
 <section class="section wrap" id="camera3d-section">
-  <div class="section-head"><div><div class="eyebrow" data-en="Explore in 3D" data-te="3Dలో పరిశీలించండి">Explore in 3D</div><h2 data-en="Interactive DSLR Camera" data-te="ఇంటరాక్టివ్ DSLR కెమెరా">Interactive DSLR Camera</h2></div><p data-en="Drag to rotate the camera, scroll to zoom, and adjust the lens aperture to see how the opening changes." data-te="కెమెరాను తిప్పడానికి డ్రాగ్ చేయండి, జూమ్ చేయడానికి స్క్రోల్ చేయండి. లెన్స్ Aperture మార్పును చూడండి.">Drag to rotate the camera, scroll to zoom, and adjust the lens aperture to see how the opening changes.</p></div>
-  <div class="camera3d-wrap">
-    <div class="camera3d-stage"><canvas id="camera3d" aria-label="Interactive 3D DSLR camera model"></canvas><div class="camera3d-hint" data-en="Drag · Rotate   |   Scroll · Zoom" data-te="డ్రాగ్ · తిప్పండి   |   స్క్రోల్ · జూమ్">Drag · Rotate &nbsp; | &nbsp; Scroll · Zoom</div></div>
-    <div class="camera3d-controls">
-      <div class="eyebrow" data-en="Lens simulator" data-te="లెన్స్ సిమ్యులేటర్">Lens simulator</div>
-      <h3 data-en="Aperture control" data-te="Aperture నియంత్రణ">Aperture control</h3>
-      <p data-en="Aperture controls the size of the opening inside your lens. A smaller f-number means a wider opening." data-te="Aperture మీ లెన్స్‌లోని రంధ్రం పరిమాణాన్ని నియంత్రిస్తుంది. తక్కువ f-number అంటే పెద్ద opening.">Aperture controls the size of the opening inside your lens. A smaller f-number means a wider opening.</p>
-      <label for="irisRange"><span data-en="Aperture (f-number)" data-te="Aperture (f-number)">Aperture (f-number)</span><output id="irisValue">f/2.8</output></label>
-      <input id="irisRange" type="range" min="1.4" max="16" step="0.1" value="2.8">
-      <div class="camera3d-actions"><button id="cameraReset" type="button" data-en="Reset view" data-te="మళ్లీ సెట్ చేయి">Reset view</button><button id="cameraSpin" type="button" data-en="Auto rotate: Off" data-te="ఆటో రొటేట్: ఆఫ్">Auto rotate: Off</button></div>
-      <div class="camera3d-note" id="apertureTip">f/2.8 · Wide opening · More light · Shallow depth of field</div>
-    </div>
+  <div style="padding:34px;border:1px solid #e8b85b66;border-radius:20px;background:linear-gradient(120deg,#29231a,#19191f);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div><div class="eyebrow" data-en="Explore in 3D" data-te="3Dలో పరిశీలించండి">Explore in 3D</div><h2 style="font:700 clamp(28px,4vw,40px) 'Playfair Display',serif;margin:10px 0" data-en="Interactive DSLR Camera" data-te="ఇంటరాక్టివ్ DSLR కెమెరా">Interactive DSLR Camera</h2><p style="color:#c9c1b5;line-height:1.7;margin:0" data-en="Open the full-screen 3D camera studio. Rotate, zoom and explore the lens." data-te="పూర్తి స్క్రీన్ 3D కెమెరా స్టూడియోను తెరవండి. కెమెరాను తిప్పి, జూమ్ చేసి లెన్స్‌ను పరిశీలించండి.">Open the full-screen 3D camera studio. Rotate, zoom and explore the lens.</p></div>
+    <a class="btn" href="3d-camera.html" data-en="Explore in 3D ↗" data-te="3Dలో చూడండి ↗">Explore in 3D ↗</a>
   </div>
 </section>
 
@@ -192,7 +183,7 @@ function renderFundamentalsStep(){
  const visualNote=document.createElement('p');visualNote.textContent=language==='te'?visual.noteTe:visual.noteEn;
  const imageNote=document.createElement('p');imageNote.className='fund-image-note';imageNote.textContent=language==='te'?'ఫోటోను చూసి మీ కెమెరాలో ఇదే భాగాన్ని గుర్తించండి.':'Study the photo and find the same part on your camera.';
  const threeBtn=document.createElement('button');threeBtn.type='button';threeBtn.className='fund-3d-link';threeBtn.textContent=language==='te'?'3D కెమెరాను తిప్పి చూడండి ↗':'Explore the interactive 3D camera ↗';
- threeBtn.addEventListener('click',()=>{closeLesson();const section=document.getElementById('camera3d-section');if(section)section.scrollIntoView({behavior:'smooth',block:'start'})});
+ threeBtn.addEventListener('click',()=>{window.location.href='3d-camera.html'});
  visualCopy.append(visualTitle,visualNote,imageNote,threeBtn);visualBox.append(photo,visualCopy);
  content.append(count,progress,card,visualBox);
  if(fundamentalsIndex===total-1){
