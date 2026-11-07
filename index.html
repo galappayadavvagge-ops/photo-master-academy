@@ -231,6 +231,7 @@ function updateLab(){const i=+iso.value,s=+shutter.value,a=+ap.value;document.ge
 [iso,shutter,ap].forEach(el=>el.addEventListener('input',updateLab));updateLab();
 </script>
 
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
@@ -277,8 +278,9 @@ if(canvas){
  box(.55,.32,.08,glass,-.9,.5,-.61);
  // Front branding badge
  box(.7,.27,.035,gold,-1.15,-.45,.59);
- const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=4.5;controls.maxDistance=13;controls.target.set(0,.1,.3);
- function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(canvas);resize();
+ const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=4.5;controls.maxDistance=13;controls.target.set(0,.1,.3);controls.enablePan=false;
+ function resize(){const rect=canvas.getBoundingClientRect();const w=Math.max(320,Math.floor(rect.width));const h=Math.max(240,Math.floor(rect.height||360));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+ if(typeof ResizeObserver!=='undefined'){new ResizeObserver(resize).observe(canvas.parentElement||canvas)}window.addEventListener('resize',resize);resize();
  const range=document.getElementById('irisRange'),value=document.getElementById('irisValue'),tip=document.getElementById('apertureTip');
  function setAperture(){const f=Number(range.value);value.textContent='f/'+f.toFixed(1);const radius=.11+((f-1.4)/(16-1.4))*.45;iris.scale.setScalar(radius/.31);irisEdge.scale.setScalar(radius/.33);tip.textContent=f<=2.8?'f/'+f.toFixed(1)+' · Wide opening · More light · Shallow depth of field':f>=11?'f/'+f.toFixed(1)+' · Narrow opening · Less light · Deeper depth of field':'f/'+f.toFixed(1)+' · Medium opening · Balanced light';}
  range.addEventListener('input',setAperture);setAperture();
